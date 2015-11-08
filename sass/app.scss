@@ -8,6 +8,14 @@ ul {
   margin: 0;
 }
 
+.new-todo--done-only li {
+  display: none;
+}
+
+.new-todo--done-only .done {
+  display: block;
+}
+
 li {
   cursor: pointer;
   color: red;
@@ -83,4 +91,22 @@ li.done {
   &:focus {
     outline: none;
   }
+}
+
+.todo-options__button {
+  margin: 2rem;
+  background: none;
+  font-size: 1rem;
+  padding: 0.8rem;
+
+  border: 1px #888 solid;
+  border-radius: 0.2rem;
+}
+
+.todo-options__button--active {
+  background: #ddd;
+}
+
+.todo-options__button:focus {
+  outline: none;
 }

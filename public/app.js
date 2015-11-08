@@ -2,6 +2,7 @@
   var todoList = document.querySelector('.todos');
   var itemInput = document.querySelector('.new-todo__input');
   var itemForm = document.querySelector('.new-todo');
+  var doneFilter = document.querySelector('.todo-options__button--done');
 
   var data = [
     {name: `Milk`},
@@ -40,6 +41,11 @@
   };
 
   itemForm.addEventListener('submit', addNewItemFromInput);
+
+  doneFilter.addEventListener('click', () => {
+    doneFilter.classList.toggle('todo-options__button--active');
+    todoList.classList.toggle('new-todo--done-only');
+  });
 
   console.dir(data);
 })();
