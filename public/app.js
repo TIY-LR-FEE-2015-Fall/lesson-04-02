@@ -1,7 +1,12 @@
 (function() {
-  var todoList = document.querySelector('.todos');
-  var itemInput = document.querySelector('.new-todo__input');
-  var itemForm = document.querySelector('.new-todo');
+  var homeList = document.querySelector('.todos--home');
+  var homeItemInput = document.querySelector('.new-todo__input--home');
+  var homeItemForm = document.querySelector('.new-todo--home');
+
+  var workList = document.querySelector('.todos--work');
+  var workItemInput = document.querySelector('.new-todo__input--work');
+  var workItemForm = document.querySelector('.new-todo--work');
+
   var doneFilter = document.querySelector('.todo-options__button--done');
 
   var data = [
@@ -12,40 +17,79 @@
     {name: `Orange Juice`},
   ];
 
-  var addItemToList = (item) => {
+  function Todo(name, done) {
+    this.name = name;
+    this.done = done || false;
+  };
+
+  Todo.prototype.markComplete = function() {
+    this.done = true;
+  };
+
+  Todo.prototype.addItemToList = function(list) {
     var listItem = document.createElement('li');
 
-    listItem.innerHTML = item.name;
+    listItem.innerHTML = this.name;
     var toggleDone = () => {
+      this.done = !this.done;
       listItem.classList.toggle('done');
     };
 
-    if (item.done) {
-      toggleDone();
+    if (this.done) {
+      listItem.classList.toggle('done');
     }
 
     listItem.addEventListener('click', toggleDone);
 
-    todoList.appendChild(listItem);
+    list.appendChild(listItem);
   };
 
-  data.forEach(addItemToList);
+  function HomeTodo(name, done) {
+    Todo.apply(this, arguments);
+
+    this.addItemToList(homeList);
+  }
+
+  HomeTodo.prototype = new Todo();
+  HomeTodo.prototype.constructor = HomeTodo;
+
+  function WorkTodo(name, done) {
+    Todo.apply(this, arguments);
+
+    this.addItemToList(workList);
+  }
+
+  WorkTodo.prototype = new Todo();
+  WorkTodo.prototype.constructor = WorkTodo;
+
+  var todos = data.map((item) => {
+    return new HomeTodo(item.name, item.done);
+  });
 
   var addNewItemFromInput = (ev) => {
     ev.preventDefault();
-    var title = itemInput.value;
-    itemInput.value = '';
+    var title = homeItemInput.value;
+    homeItemInput.value = '';
 
-    var todo = new Todo(title);
-    addItemToList(todo);
+    var todo = new HomeTodo(title);
   };
 
-  itemForm.addEventListener('submit', addNewItemFromInput);
+  homeItemForm.addEventListener('submit', addNewItemFromInput);
+
+  var addNewWorkItem = (ev) => {
+    ev.preventDefault();
+    var title = workItemInput.value;
+    workItemInput.value = '';
+
+    var todo = new WorkTodo(title);
+  };
+
+  workItemForm.addEventListener('submit', addNewWorkItem);
 
   doneFilter.addEventListener('click', () => {
     doneFilter.classList.toggle('todo-options__button--active');
-    todoList.classList.toggle('new-todo--done-only');
+    homeList.classList.toggle('new-todo--done-only');
   });
 
-  console.dir(data);
+  console.dir(todos);
 })();

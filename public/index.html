@@ -6,18 +6,33 @@
     <link rel="stylesheet" href="/app.css">
   </head>
   <body>
+    <div class="col">
+      <h1>Home</h1>
 
-    <h1>Reminders</h1>
+      <ul class="todos todos--home"></ul>
 
-    <ul class="todos"></ul>
+      <form class="new-todo new-todo--home">
+        <input type="text" class="new-todo__input new-todo__input--home" placeholder="New Item"/>
+        <button class="new-todo__button new-todo__button--home">Add +</button>
+      </form>
 
-    <form class="new-todo">
-      <input type="text" class="new-todo__input" placeholder="New Item"/>
-      <button class="new-todo__button">Add +</button>
-    </form>
+      <div class="todo-options">
+        <button class="todo-options__button todo-options__button--done">Done Only</button>
+      </div>
+    </div>
+    <div class="col">
+      <h1>Work</h1>
 
-    <div class="todo-options">
-      <button class="todo-options__button todo-options__button--done">Done Only</button>
+      <ul class="todos todos--work"></ul>
+
+      <form class="new-todo new-todo--work">
+        <input type="text" class="new-todo__input new-todo__input--work" placeholder="New Item"/>
+        <button class="new-todo__button new-todo__button--work">Add +</button>
+      </form>
+
+      <div class="todo-options">
+        <button class="todo-options__button todo-options__button--done">Done Only</button>
+      </div>
     </div>
 
     <script src="/app.js"></script>
