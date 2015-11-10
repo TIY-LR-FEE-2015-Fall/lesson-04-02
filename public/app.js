@@ -18,6 +18,13 @@
 
     // Create a DOM element to represent our TodoItem
     this.element = document.createElement('li');
+    this.element.innerHTML = this.name;
+
+    if (this.done) {
+      this.element.classList.add('done');
+    }
+
+    this.element.addEventListener('click', this.toggleComplete.bind(this));
   }
 
   TodoItem.prototype.toggleComplete = function() {
@@ -35,21 +42,10 @@
     this.element.classList.toggle('done');
   };
 
-  var addItemToList = (item) => {
-    var listItem = document.createElement('li');
+  var addItemToList = (item, index) => {
+    var todo = new TodoItem(item.name, item.done);
 
-    listItem.innerHTML = item.name;
-    var toggleDone = () => {
-      listItem.classList.toggle('done');
-    };
-
-    if (item.done) {
-      toggleDone();
-    }
-
-    listItem.addEventListener('click', toggleDone);
-
-    todoList.appendChild(listItem);
+    todoList.appendChild(todo.element);
   };
 
   data.forEach(addItemToList);
