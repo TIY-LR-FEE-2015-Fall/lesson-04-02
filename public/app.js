@@ -52,6 +52,9 @@
   TodoList.prototype.addNewItem = function(item) {
     var todo = new TodoItem(item.name, item.done);
 
+    // Store new TodoItem into the items array
+    this.items.push(todo);
+
     this.element.appendChild(todo.element);
   };
 
@@ -72,6 +75,26 @@
     this.addNewItem(todo);
   };
 
+  TodoList.prototype.toggleOnlyComplete = function() {
+    this.filtered = !this.filtered;
+
+    // This is what we want to show after the button is done clicking
+    var itemsToShow = this.items;
+
+    // Clear out list to get started
+    this.element.innerHTML = '';
+
+    if (this.filtered) {
+      itemsToShow = this.items.filter((item) => {
+        return item.done;
+      });
+    }
+
+    itemsToShow.forEach((item) => {
+      this.element.appendChild(item.element);
+    });
+  };
+
   var homeList = new TodoList(homeTodoUl, homeTodoForm);
   var workList = new TodoList(document.querySelector('.work-todos'), document.querySelector('.work-new-todo'));
 
@@ -85,7 +108,7 @@
 
   doneFilter.addEventListener('click', () => {
     doneFilter.classList.toggle('todo-options__button--active');
-    todoList.classList.toggle('new-todo--done-only');
+    homeList.toggleOnlyComplete();
   });
 
   console.dir(data);
