@@ -42,13 +42,27 @@
     this.element.classList.toggle('done');
   };
 
-  var addItemToList = (item, index) => {
+  function TodoList(element, formElement) {
+    this.element = element;
+    this.formElement = formElement;
+    this.items = [];
+  }
+
+  TodoList.prototype.addNewItem = function(item) {
     var todo = new TodoItem(item.name, item.done);
 
-    todoList.appendChild(todo.element);
+    this.element.appendChild(todo.element);
   };
 
-  data.forEach(addItemToList);
+  var homeList = new TodoList(todoList, itemForm);
+
+  data.forEach(homeList.addNewItem.bind(homeList));
+
+  /* Same as
+  data.forEach((item) => {
+    homeList.addNewItem(item);
+  });
+  */
 
   var addNewItemFromInput = (ev) => {
     ev.preventDefault();
