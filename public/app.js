@@ -46,12 +46,31 @@
     this.element = element;
     this.formElement = formElement;
     this.items = [];
+
+    this.formElement.addEventListener('submit', this.addItemFromFormInput.bind(this));
   }
 
   TodoList.prototype.addNewItem = function(item) {
     var todo = new TodoItem(item.name, item.done);
 
     this.element.appendChild(todo.element);
+  };
+
+  TodoList.prototype.addItemFromFormInput = function(ev) {
+    // Stop form from submitting
+    ev.preventDefault();
+
+    var input = this.formElement.querySelector('input');
+
+    // Get value from user input
+    var title = input.value;
+
+    // Reset the form
+    input.value = '';
+
+    // Add item to existing list
+    var todo = {name: title};
+    this.addNewItem(todo);
   };
 
   var homeList = new TodoList(todoList, itemForm);
@@ -63,17 +82,6 @@
     homeList.addNewItem(item);
   });
   */
-
-  var addNewItemFromInput = (ev) => {
-    ev.preventDefault();
-    var title = itemInput.value;
-    itemInput.value = '';
-
-    var todo = {name: title};
-    addItemToList(todo);
-  };
-
-  itemForm.addEventListener('submit', addNewItemFromInput);
 
   doneFilter.addEventListener('click', () => {
     doneFilter.classList.toggle('todo-options__button--active');
