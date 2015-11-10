@@ -12,6 +12,29 @@
     {name: `Orange Juice`},
   ];
 
+  function TodoItem(name, done) {
+    this.name = name;
+    this.done = done || false;
+
+    // Create a DOM element to represent our TodoItem
+    this.element = document.createElement('li');
+  }
+
+  TodoItem.prototype.toggleComplete = function() {
+    // Update done status
+    this.done = !this.done;
+    /* Same as
+    if (this.done) {
+      this.done = false;
+    } else {
+      this.done = true;
+    }
+    */
+
+    // Update DOM
+    this.element.classList.toggle('done');
+  };
+
   var addItemToList = (item) => {
     var listItem = document.createElement('li');
 
