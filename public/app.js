@@ -36,7 +36,7 @@
     var title = itemInput.value;
     itemInput.value = '';
 
-    var todo = new Todo(title);
+    var todo = {name: title};
     addItemToList(todo);
   };
 
