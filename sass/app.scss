@@ -110,3 +110,11 @@ li.done {
 .todo-options__button:focus {
   outline: none;
 }
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+}

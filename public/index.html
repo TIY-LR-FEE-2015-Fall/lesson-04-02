@@ -7,17 +7,35 @@
   </head>
   <body>
 
-    <h1>Reminders</h1>
+    <div class="row">
+      <div class="col">
+        <h1>Reminders</h1>
 
-    <ul class="todos"></ul>
+        <ul class="home-todos"></ul>
 
-    <form class="new-todo">
-      <input type="text" class="new-todo__input" placeholder="New Item"/>
-      <button class="new-todo__button">Add +</button>
-    </form>
+        <form class="home-new-todo">
+          <input type="text" class="new-todo__input" placeholder="New Item"/>
+          <button class="new-todo__button">Add +</button>
+        </form>
 
-    <div class="todo-options">
-      <button class="todo-options__button todo-options__button--done">Done Only</button>
+        <div class="todo-options">
+          <button class="todo-options__button todo-options__button--done">Done Only</button>
+        </div>
+      </div>
+      <div class="col">
+        <h1>Work</h1>
+
+        <ul class="work-todos"></ul>
+
+        <form class="work-new-todo">
+          <input type="text" class="new-todo__input" placeholder="New Item"/>
+          <button class="new-todo__button">Add +</button>
+        </form>
+
+        <div class="todo-options">
+          <button class="todo-options__button todo-options__button--done">Done Only</button>
+        </div>
+      </div>
     </div>
 
     <script src="/app.js"></script>

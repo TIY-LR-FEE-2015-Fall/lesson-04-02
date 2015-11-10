@@ -1,7 +1,6 @@
 (function() {
-  var todoList = document.querySelector('.todos');
-  var itemInput = document.querySelector('.new-todo__input');
-  var itemForm = document.querySelector('.new-todo');
+  var homeTodoUl = document.querySelector('.home-todos');
+  var homeTodoForm = document.querySelector('.home-new-todo');
   var doneFilter = document.querySelector('.todo-options__button--done');
 
   var data = [
@@ -73,7 +72,8 @@
     this.addNewItem(todo);
   };
 
-  var homeList = new TodoList(todoList, itemForm);
+  var homeList = new TodoList(homeTodoUl, homeTodoForm);
+  var workList = new TodoList(document.querySelector('.work-todos'), document.querySelector('.work-new-todo'));
 
   data.forEach(homeList.addNewItem.bind(homeList));
 
