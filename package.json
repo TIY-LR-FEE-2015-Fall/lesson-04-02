@@ -10,6 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "broccoli": "^0.16.8",
+    "broccoli-babel-transpiler": "^5.5.0",
+    "broccoli-concat": "0.0.13",
     "broccoli-merge-trees": "^0.2.4",
     "broccoli-sass": "^0.6.8"
   }
